@@ -1,6 +1,6 @@
 import React from 'react';
-import SettingsPage from './SettingsPage';
-import MotorSettings from './MotorSettings';
+import SettingsPage from './SettingsPage.jsx';
+import MotorSettings from './MotorSettings.jsx';
 
 const MODULE_TYPES = ['None', 'MK40', 'MK60'];
 

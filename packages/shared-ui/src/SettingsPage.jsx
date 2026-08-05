@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ApiService from './ApiService';
-import SaveCancelBar from './SaveCancelBar';
+import SaveCancelBar from './SaveCancelBar.jsx';
 
 const SettingsPage = ({ configEndpoint, defaultData, onDataLoaded, beforeSave, children }) => {
   const [data, setData] = useState(defaultData);

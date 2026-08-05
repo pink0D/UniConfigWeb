@@ -1,5 +1,5 @@
 import React from 'react';
-import SettingsPage from './SettingsPage';
+import SettingsPage from './SettingsPage.jsx';
 
 const RESOLUTIONS = [
   'QVGA 320x240',

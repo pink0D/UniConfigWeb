@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
-import SettingsPage from './SettingsPage';
-import WiFiNetworkList from './WiFiNetworkList';
-import ConfirmDialog from './ConfirmDialog';
+import SettingsPage from './SettingsPage.jsx';
+import WiFiNetworkList from './WiFiNetworkList.jsx';
+import ConfirmDialog from './ConfirmDialog.jsx';
 
 const defaultData = {
   hostname: '',
