@@ -6,11 +6,11 @@ const ConfirmDialog = ({ message, onConfirm, onCancel }) => {
       <div className="confirm-dialog">
         <p className="confirm-message">{message}</p>
         <div className="confirm-buttons">
-          <button className="btn btn-cancel" onClick={onCancel}>
-            Cancel
-          </button>
           <button className="btn btn-save" onClick={onConfirm}>
             Confirm
+          </button>
+          <button className="btn btn-cancel" onClick={onCancel}>
+            Cancel
           </button>
         </div>
       </div>

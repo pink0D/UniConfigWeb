@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 
 const WiFiNetworkList = ({ networks, onChange }) => {
   const dragItem = useRef(null);
-  const dragOverItem = useRef(null);
 
   const handleAdd = () => {
     const newNetworks = [...networks, { ssid: '', password: '' }];
@@ -21,21 +20,27 @@ const WiFiNetworkList = ({ networks, onChange }) => {
     onChange(newNetworks);
   };
 
-  const handleDragStart = (index) => {
+  const handleDragStart = (e, index) => {
     dragItem.current = index;
+    // Hide the default drag ghost image
+    const img = new Image();
+    img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=';
+    e.dataTransfer.setDragImage(img, 0, 0);
+    e.dataTransfer.effectAllowed = 'move';
   };
 
   const handleDragEnter = (index) => {
-    dragOverItem.current = index;
+    if (dragItem.current === null) return;
+    if (dragItem.current === index) return;
+    const newNetworks = [...networks];
+    const draggedItem = newNetworks.splice(dragItem.current, 1)[0];
+    newNetworks.splice(index, 0, draggedItem);
+    dragItem.current = index;
+    onChange(newNetworks);
   };
 
   const handleDragEnd = () => {
-    const newNetworks = [...networks];
-    const draggedItem = newNetworks.splice(dragItem.current, 1)[0];
-    newNetworks.splice(dragOverItem.current, 0, draggedItem);
     dragItem.current = null;
-    dragOverItem.current = null;
-    onChange(newNetworks);
   };
 
   return (
@@ -45,7 +50,7 @@ const WiFiNetworkList = ({ networks, onChange }) => {
           key={index}
           className="network-row"
           draggable
-          onDragStart={() => handleDragStart(index)}
+          onDragStart={(e) => handleDragStart(e, index)}
           onDragEnter={() => handleDragEnter(index)}
           onDragEnd={handleDragEnd}
           onDragOver={(e) => e.preventDefault()}
@@ -70,7 +75,7 @@ const WiFiNetworkList = ({ networks, onChange }) => {
           <input
             className="network-input"
             type="password"
-            placeholder="Password"
+            placeholder="No Password"
             value={net.password}
             onChange={(e) => handleChange(index, 'password', e.target.value)}
           />

@@ -72,7 +72,7 @@ const WiFiForm = ({ data, onDataChange }) => {
       </div>
 
       <p className="comment-text">
-        In case ESP32 can't connect to any network, it creates an Access Point
+        When ESP32 can't connect to any network, Access Point is created
       </p>
 
       <div className="form-field">
@@ -93,7 +93,7 @@ const WiFiForm = ({ data, onDataChange }) => {
           type="password"
           value={data.ap.password}
           onChange={(e) => handleApChange('password', e.target.value)}
-          placeholder="AP Password"
+          placeholder="No Password"
         />
       </div>
     </>

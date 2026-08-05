@@ -12,8 +12,8 @@ html {
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  background: #1a1a2e;
-  color: #e0e0e0;
+  background: #f0f4f8;
+  color: #2c3e50;
   line-height: 1.5;
 }
 
@@ -28,8 +28,8 @@ body {
 
 .tab-bar {
   display: flex;
-  background: #16213e;
-  border-bottom: 2px solid #0f3460;
+  background: #ffffff;
+  border-bottom: 2px solid #d1dce6;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -40,7 +40,7 @@ body {
   padding: 14px 8px;
   background: none;
   border: none;
-  color: #888;
+  color: #7f8c8d;
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
@@ -50,8 +50,8 @@ body {
 }
 
 .tab-button.active {
-  color: #e94560;
-  border-bottom-color: #e94560;
+  color: #4a90d9;
+  border-bottom-color: #4a90d9;
 }
 
 .tab-button:active {
@@ -73,17 +73,17 @@ body {
 .loading {
   text-align: center;
   padding: 40px;
-  color: #888;
+  color: #7f8c8d;
 }
 
 /* === Section Headers === */
 .section-title {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #e94560;
+  color: #4a90d9;
   margin-bottom: 12px;
   padding-bottom: 6px;
-  border-bottom: 1px solid #0f3460;
+  border-bottom: 1px solid #d1dce6;
 }
 
 /* === Form Field === */
@@ -95,16 +95,16 @@ body {
 
 .form-label {
   font-size: 0.85rem;
-  color: #aaa;
+  color: #5a6c7d;
   font-weight: 500;
 }
 
 .form-input {
   padding: 10px 12px;
-  background: #16213e;
-  border: 1px solid #0f3460;
+  background: #ffffff;
+  border: 1px solid #d1dce6;
   border-radius: 6px;
-  color: #e0e0e0;
+  color: #2c3e50;
   font-size: 0.95rem;
   outline: none;
   transition: border-color 0.2s;
@@ -112,19 +112,20 @@ body {
 }
 
 .form-input:focus {
-  border-color: #e94560;
+  border-color: #4a90d9;
 }
 
 .form-input::placeholder {
-  color: #555;
+  color: #aab7c2;
+  font-style: italic;
 }
 
 .setting-select {
   padding: 8px 10px;
-  background: #16213e;
-  border: 1px solid #0f3460;
+  background: #ffffff;
+  border: 1px solid #d1dce6;
   border-radius: 6px;
-  color: #e0e0e0;
+  color: #2c3e50;
   font-size: 0.9rem;
   outline: none;
   min-width: 140px;
@@ -132,28 +133,28 @@ body {
 }
 
 .setting-select:focus {
-  border-color: #e94560;
+  border-color: #4a90d9;
 }
 
 .setting-select option {
-  background: #16213e;
-  color: #e0e0e0;
+  background: #ffffff;
+  color: #2c3e50;
 }
 
 /* === Static Text === */
 .static-text {
   padding: 10px 12px;
-  background: #16213e;
-  border: 1px solid #0f3460;
+  background: #e8f0fe;
+  border: 1px solid #b8d4f1;
   border-radius: 6px;
-  color: #e94560;
+  color: #4a90d9;
   font-weight: 600;
   font-size: 0.95rem;
 }
 
 .comment-text {
   font-size: 0.8rem;
-  color: #888;
+  color: #7f8c8d;
   font-style: italic;
   padding: 8px 0;
 }
@@ -170,8 +171,8 @@ body {
   align-items: center;
   gap: 6px;
   padding: 10px 16px;
-  background: #16213e;
-  border: 2px solid #0f3460;
+  background: #ffffff;
+  border: 2px solid #d1dce6;
   border-radius: 8px;
   cursor: pointer;
   font-size: 0.9rem;
@@ -182,7 +183,8 @@ body {
 }
 
 .radio-option.active {
-  border-color: #e94560;
+  border-color: #4a90d9;
+  background: #e8f0fe;
 }
 
 .radio-option input {
@@ -191,14 +193,14 @@ body {
 
 /* === Channel Settings === */
 .channel-settings {
-  background: #0f3460;
+  background: #e8f0fe;
   border-radius: 8px;
   padding: 12px;
 }
 
 .channel-name {
   font-size: 0.9rem;
-  color: #e94560;
+  color: #4a90d9;
   margin-bottom: 8px;
 }
 
@@ -222,14 +224,14 @@ body {
   border-radius: 4px;
   font-size: 0.8rem;
   cursor: pointer;
-  background: #16213e;
-  border: 1px solid #0f3460;
+  background: #ffffff;
+  border: 3px solid #d1dce6;
   transition: border-color 0.2s, background 0.2s;
 }
 
 .mode-option.active {
-  border-color: #e94560;
-  background: #1a1a2e;
+  border-color: #4a90d9;
+  background: #e8f0fe;
 }
 
 .mode-option input {
@@ -254,9 +256,9 @@ body {
 .toggle-slider {
   width: 44px;
   height: 24px;
-  background: #16213e;
+  background: #d1dce6;
   border-radius: 12px;
-  border: 1px solid #0f3460;
+  border: 1px solid #c0d0dd;
   position: relative;
   transition: background 0.2s;
   flex-shrink: 0;
@@ -268,15 +270,15 @@ body {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: #555;
+  background: #7f8c8d;
   top: 2px;
   left: 2px;
   transition: transform 0.2s, background 0.2s;
 }
 
 .invert-switch input:checked + .toggle-slider {
-  background: #e94560;
-  border-color: #e94560;
+  background: #4a90d9;
+  border-color: #4a90d9;
 }
 
 .invert-switch input:checked + .toggle-slider::after {
@@ -294,7 +296,7 @@ body {
 
 .section-toggle .toggle-label {
   font-size: 0.9rem;
-  color: #e0e0e0;
+  color: #2c3e50;
 }
 
 .section-toggle .invert-switch {
@@ -312,8 +314,8 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
-  background: #16213e;
-  border: 1px solid #0f3460;
+  background: #ffffff;
+  border: 1px solid #d1dce6;
   border-radius: 6px;
   padding: 6px 8px;
   cursor: grab;
@@ -327,7 +329,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #555;
+  color: #aab7c2;
   flex-shrink: 0;
   padding: 4px;
   cursor: grab;
@@ -335,7 +337,7 @@ body {
 
 .add-icon {
   cursor: pointer;
-  color: #3498db;
+  color: #4a90d9;
 }
 
 .plus-icon {
@@ -348,20 +350,21 @@ body {
   flex: 1;
   min-width: 0;
   padding: 8px 10px;
-  background: #1a1a2e;
-  border: 1px solid #0f3460;
+  background: #f0f4f8;
+  border: 1px solid #d1dce6;
   border-radius: 4px;
-  color: #e0e0e0;
+  color: #2c3e50;
   font-size: 0.85rem;
   outline: none;
 }
 
 .network-input:focus {
-  border-color: #e94560;
+  border-color: #4a90d9;
 }
 
 .network-input::placeholder {
-  color: #555;
+  color: #aab7c2;
+  font-style: italic;
 }
 
 .btn-delete {
@@ -377,12 +380,12 @@ body {
 }
 
 .btn-delete:hover {
-  background: rgba(231, 76, 60, 0.15);
+  background: rgba(231, 76, 60, 0.1);
 }
 
 .network-placeholder {
   padding: 8px;
-  color: #3498db;
+  color: #4a90d9;
   cursor: pointer;
   font-size: 0.85rem;
 }
@@ -400,7 +403,7 @@ body {
   margin-top: auto;
   position: sticky;
   bottom: 0;
-  background: #1a1a2e;
+  background: #f0f4f8;
 }
 
 .btn {
@@ -424,14 +427,14 @@ body {
 }
 
 .btn-save {
-  background: #e94560;
+  background: #4a90d9;
   color: #fff;
 }
 
 .btn-cancel {
-  background: #16213e;
-  color: #888;
-  border: 1px solid #0f3460;
+  background: #ffffff;
+  color: #7f8c8d;
+  border: 1px solid #d1dce6;
 }
 
 /* === Error Popup === */
@@ -441,7 +444,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -449,7 +452,7 @@ body {
 }
 
 .error-popup-content {
-  background: #16213e;
+  background: #ffffff;
   border: 2px solid #e74c3c;
   border-radius: 12px;
   padding: 24px;
@@ -479,7 +482,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -487,8 +490,8 @@ body {
 }
 
 .confirm-dialog {
-  background: #16213e;
-  border: 2px solid #e94560;
+  background: #ffffff;
+  border: 2px solid #4a90d9;
   border-radius: 12px;
   padding: 24px;
   max-width: 90%;
@@ -497,7 +500,7 @@ body {
 }
 
 .confirm-message {
-  color: #e0e0e0;
+  color: #2c3e50;
   margin-bottom: 20px;
   font-size: 0.95rem;
   line-height: 1.6;
