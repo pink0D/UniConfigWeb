@@ -1,0 +1,35 @@
+{
+  "moduleType": "MK60",
+  "channels": [
+    {
+      "input": "LeftStickY",
+      "button": "",
+      "invert": false
+    },
+    {
+      "input": "RightStickY",
+      "button": "",
+      "invert": false
+    },
+    {
+      "input": "",
+      "button": "DPadUp",
+      "invert": false
+    },
+    {
+      "input": "",
+      "button": "DPadDown",
+      "invert": true
+    },
+    {
+      "input": "LeftStickY",
+      "button": "",
+      "invert": false
+    },
+    {
+      "input": "RightStickY",
+      "button": "",
+      "invert": false
+    }
+  ]
+}

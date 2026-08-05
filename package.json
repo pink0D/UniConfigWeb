@@ -1,0 +1,17 @@
+{
+  "name": "uniconfig-web",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build:shared": "npm run build -w packages/shared-ui",
+    "build:camera-brick-mk": "npm run build -w apps/camera-brick-mk",
+    "dev:camera-brick-mk": "npm run dev -w apps/camera-brick-mk"
+  },
+  "dependencies": {
+    "@craco/craco": "^7.1.0"
+  }
+}

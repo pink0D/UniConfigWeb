@@ -1,0 +1,588 @@
+/* === Reset & Base === */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  line-height: 1.5;
+}
+
+/* === Settings Layout === */
+.settings-layout {
+  max-width: 600px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-bar {
+  display: flex;
+  background: #16213e;
+  border-bottom: 2px solid #0f3460;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 14px 8px;
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.tab-button.active {
+  color: #e94560;
+  border-bottom-color: #e94560;
+}
+
+.tab-button:active {
+  opacity: 0.7;
+}
+
+.tab-content {
+  flex: 1;
+  padding: 16px;
+}
+
+/* === Settings Page === */
+.settings-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #888;
+}
+
+/* === Section Headers === */
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e94560;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #0f3460;
+}
+
+/* === Form Field === */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 0.85rem;
+  color: #aaa;
+  font-weight: 500;
+}
+
+.form-input {
+  padding: 10px 12px;
+  background: #16213e;
+  border: 1px solid #0f3460;
+  border-radius: 6px;
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.form-input:focus {
+  border-color: #e94560;
+}
+
+.form-input::placeholder {
+  color: #555;
+}
+
+.setting-select {
+  padding: 8px 10px;
+  background: #16213e;
+  border: 1px solid #0f3460;
+  border-radius: 6px;
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  outline: none;
+  min-width: 140px;
+  flex: 1;
+}
+
+.setting-select:focus {
+  border-color: #e94560;
+}
+
+.setting-select option {
+  background: #16213e;
+  color: #e0e0e0;
+}
+
+/* === Static Text === */
+.static-text {
+  padding: 10px 12px;
+  background: #16213e;
+  border: 1px solid #0f3460;
+  border-radius: 6px;
+  color: #e94560;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.comment-text {
+  font-size: 0.8rem;
+  color: #888;
+  font-style: italic;
+  padding: 8px 0;
+}
+
+/* === Radio Group (Module Type) === */
+.radio-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: #16213e;
+  border: 2px solid #0f3460;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: border-color 0.2s;
+  flex: 1;
+  justify-content: center;
+  min-width: 100px;
+}
+
+.radio-option.active {
+  border-color: #e94560;
+}
+
+.radio-option input {
+  display: none;
+}
+
+/* === Channel Settings === */
+.channel-settings {
+  background: #0f3460;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.channel-name {
+  font-size: 0.9rem;
+  color: #e94560;
+  margin-bottom: 8px;
+}
+
+.channel-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.mode-switch {
+  display: flex;
+  gap: 4px;
+}
+
+.mode-option {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  background: #16213e;
+  border: 1px solid #0f3460;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.mode-option.active {
+  border-color: #e94560;
+  background: #1a1a2e;
+}
+
+.mode-option input {
+  display: none;
+}
+
+/* === Toggle Switch === */
+.invert-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  position: relative;
+}
+
+.invert-switch input {
+  display: none;
+}
+
+.toggle-slider {
+  width: 44px;
+  height: 24px;
+  background: #16213e;
+  border-radius: 12px;
+  border: 1px solid #0f3460;
+  position: relative;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.toggle-slider::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #555;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.invert-switch input:checked + .toggle-slider {
+  background: #e94560;
+  border-color: #e94560;
+}
+
+.invert-switch input:checked + .toggle-slider::after {
+  transform: translateX(20px);
+  background: #fff;
+}
+
+/* === Section Toggle (Flip switches) === */
+.section-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.section-toggle .toggle-label {
+  font-size: 0.9rem;
+  color: #e0e0e0;
+}
+
+.section-toggle .invert-switch {
+  font-size: 0;
+}
+
+/* === WiFi Network List === */
+.wifi-network-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.network-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #16213e;
+  border: 1px solid #0f3460;
+  border-radius: 6px;
+  padding: 6px 8px;
+  cursor: grab;
+}
+
+.network-row:active {
+  cursor: grabbing;
+}
+
+.drag-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  flex-shrink: 0;
+  padding: 4px;
+  cursor: grab;
+}
+
+.add-icon {
+  cursor: pointer;
+  color: #3498db;
+}
+
+.plus-icon {
+  font-size: 1.3rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.network-input {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 10px;
+  background: #1a1a2e;
+  border: 1px solid #0f3460;
+  border-radius: 4px;
+  color: #e0e0e0;
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.network-input:focus {
+  border-color: #e94560;
+}
+
+.network-input::placeholder {
+  color: #555;
+}
+
+.btn-delete {
+  padding: 6px 10px;
+  background: none;
+  border: none;
+  color: #e74c3c;
+  font-size: 1rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.btn-delete:hover {
+  background: rgba(231, 76, 60, 0.15);
+}
+
+.network-placeholder {
+  padding: 8px;
+  color: #3498db;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.network-add-row {
+  border-style: dashed;
+  cursor: pointer;
+}
+
+/* === Save / Cancel Bar === */
+.save-cancel-bar {
+  display: flex;
+  gap: 12px;
+  padding: 16px 0;
+  margin-top: auto;
+  position: sticky;
+  bottom: 0;
+  background: #1a1a2e;
+}
+
+.btn {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn:active {
+  opacity: 0.7;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-save {
+  background: #e94560;
+  color: #fff;
+}
+
+.btn-cancel {
+  background: #16213e;
+  color: #888;
+  border: 1px solid #0f3460;
+}
+
+/* === Error Popup === */
+.error-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.error-popup-content {
+  background: #16213e;
+  border: 2px solid #e74c3c;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 90%;
+  text-align: center;
+}
+
+.error-popup-content p {
+  color: #e74c3c;
+  margin-bottom: 16px;
+}
+
+.error-popup-content button {
+  padding: 10px 30px;
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* === Confirm Dialog === */
+.confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.confirm-dialog {
+  background: #16213e;
+  border: 2px solid #e94560;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 90%;
+  width: 340px;
+  text-align: center;
+}
+
+.confirm-message {
+  color: #e0e0e0;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.confirm-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.confirm-buttons .btn {
+  flex: 1;
+}
+
+/* === Mobile Optimization === */
+@media (max-width: 480px) {
+  .settings-layout {
+    max-width: 100%;
+  }
+
+  .tab-content {
+    padding: 12px 10px;
+  }
+
+  .tab-button {
+    padding: 12px 6px;
+    font-size: 0.8rem;
+  }
+
+  .channel-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .mode-switch {
+    justify-content: center;
+  }
+
+  .invert-switch {
+    justify-content: center;
+  }
+
+  .network-row {
+    flex-wrap: wrap;
+  }
+
+  .network-input {
+    flex: 1 1 40%;
+    min-width: 80px;
+  }
+
+  .save-cancel-bar {
+    padding: 12px 0;
+  }
+
+  .btn {
+    padding: 12px;
+  }
+
+  .radio-group {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 360px) {
+  .tab-button {
+    font-size: 0.7rem;
+    padding: 10px 4px;
+  }
+
+  .channel-settings {
+    padding: 8px;
+  }
+
+  .setting-select {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .network-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-delete {
+    align-self: flex-end;
+  }
+}

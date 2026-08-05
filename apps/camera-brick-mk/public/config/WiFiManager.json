@@ -1,0 +1,18 @@
+{
+  "hostname": "fpv",
+  "timeout": 15,
+  "ap": {
+    "ssid": "CameraBrick_8BC82D",
+    "password": ""
+  },
+  "networks": [
+    {
+      "ssid": "secret1111",
+      "password": "secret1111"
+    },
+    {
+      "ssid": "secret2222",
+      "password": "secret2222"
+    }
+  ]
+}
