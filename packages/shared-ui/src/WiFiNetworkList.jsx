@@ -1,8 +1,6 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
 const WiFiNetworkList = ({ networks, onChange }) => {
-  const dragItem = useRef(null);
-
   const handleAdd = () => {
     const newNetworks = [...networks, { ssid: '', password: '' }];
     onChange(newNetworks);
@@ -20,27 +18,18 @@ const WiFiNetworkList = ({ networks, onChange }) => {
     onChange(newNetworks);
   };
 
-  const handleDragStart = (e, index) => {
-    dragItem.current = index;
-    // Hide the default drag ghost image
-    const img = new Image();
-    img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=';
-    e.dataTransfer.setDragImage(img, 0, 0);
-    e.dataTransfer.effectAllowed = 'move';
-  };
-
-  const handleDragEnter = (index) => {
-    if (dragItem.current === null) return;
-    if (dragItem.current === index) return;
+  const handleMoveUp = (index) => {
+    if (index === 0) return;
     const newNetworks = [...networks];
-    const draggedItem = newNetworks.splice(dragItem.current, 1)[0];
-    newNetworks.splice(index, 0, draggedItem);
-    dragItem.current = index;
+    [newNetworks[index - 1], newNetworks[index]] = [newNetworks[index], newNetworks[index - 1]];
     onChange(newNetworks);
   };
 
-  const handleDragEnd = () => {
-    dragItem.current = null;
+  const handleMoveDown = (index) => {
+    if (index === networks.length - 1) return;
+    const newNetworks = [...networks];
+    [newNetworks[index], newNetworks[index + 1]] = [newNetworks[index + 1], newNetworks[index]];
+    onChange(newNetworks);
   };
 
   return (
@@ -49,21 +38,28 @@ const WiFiNetworkList = ({ networks, onChange }) => {
         <div
           key={index}
           className="network-row"
-          draggable
-          onDragStart={(e) => handleDragStart(e, index)}
-          onDragEnter={() => handleDragEnter(index)}
-          onDragEnd={handleDragEnd}
-          onDragOver={(e) => e.preventDefault()}
         >
-          <div className="drag-handle" title="Drag to reorder">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-              <circle cx="5" cy="4" r="1.5" />
-              <circle cx="11" cy="4" r="1.5" />
-              <circle cx="5" cy="8" r="1.5" />
-              <circle cx="11" cy="8" r="1.5" />
-              <circle cx="5" cy="12" r="1.5" />
-              <circle cx="11" cy="12" r="1.5" />
-            </svg>
+          <div className="move-buttons">
+            <button
+              className="btn-move btn-move-up"
+              onClick={() => handleMoveUp(index)}
+              disabled={index === 0}
+              title="Move up"
+            >
+              <svg width="14" height="14" viewBox="0 0 12 12" fill="currentColor">
+                <path d="M6 3L2 8h8L6 3z" />
+              </svg>
+            </button>
+            <button
+              className="btn-move btn-move-down"
+              onClick={() => handleMoveDown(index)}
+              disabled={index === networks.length - 1}
+              title="Move down"
+            >
+              <svg width="14" height="14" viewBox="0 0 12 12" fill="currentColor">
+                <path d="M6 9L2 4h8L6 9z" />
+              </svg>
+            </button>
           </div>
           <input
             className="network-input"
@@ -88,11 +84,9 @@ const WiFiNetworkList = ({ networks, onChange }) => {
           </button>
         </div>
       ))}
-      <div className="network-row network-add-row">
-        <div className="drag-handle add-icon" onClick={handleAdd} title="Add network">
-          <span className="plus-icon">+</span>
-        </div>
-        <div className="network-placeholder" onClick={handleAdd}>
+      <div className="network-row network-add-row" onClick={handleAdd}>
+        <span className="add-icon-text">+</span>
+        <div className="network-placeholder">
           Add network
         </div>
       </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ApiService from './ApiService';
 import SaveCancelBar from './SaveCancelBar.jsx';
 
-const SettingsPage = ({ configEndpoint, defaultData, onDataLoaded, beforeSave, children }) => {
+const SettingsPage = ({ configEndpoint, defaultData, onDataLoaded, beforeSave, saveDataTransform, children }) => {
   const [data, setData] = useState(defaultData);
   const [originalData, setOriginalData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -42,7 +42,8 @@ const SettingsPage = ({ configEndpoint, defaultData, onDataLoaded, beforeSave, c
     setSaving(true);
     setError(null);
     try {
-      const response = await ApiService.saveConfig(configEndpoint, data);
+      const saveData = saveDataTransform ? saveDataTransform(data) : data;
+      const response = await ApiService.saveConfig(configEndpoint, saveData);
       if (response.status !== 200) {
         const errorText = await response.text();
         throw new Error(errorText || `Server returned ${response.status}`);

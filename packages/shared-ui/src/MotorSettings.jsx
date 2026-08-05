@@ -44,49 +44,51 @@ const MotorSettings = ({ channel, index, onChannelChange }) => {
             Button
           </label>
         </div>
-        {isInputMode ? (
-          <select
-            className="setting-select"
-            value={channel.input || ''}
-            onChange={(e) => {
-              const updated = { ...channel, input: e.target.value };
-              onChannelChange(index, updated);
-            }}
-          >
-            {INPUT_OPTIONS.map((opt) => (
-              <option key={opt} value={opt}>
-                {opt === '' ? '' : opt}
-              </option>
-            ))}
-          </select>
-        ) : (
-          <select
-            className="setting-select"
-            value={channel.button || ''}
-            onChange={(e) => {
-              const updated = { ...channel, button: e.target.value };
-              onChannelChange(index, updated);
-            }}
-          >
-            {BUTTON_OPTIONS.map((opt) => (
-              <option key={opt} value={opt}>
-                {opt === '' ? '' : opt}
-              </option>
-            ))}
-          </select>
-        )}
-        <label className="invert-switch">
-          <input
-            type="checkbox"
-            checked={channel.invert}
-            onChange={(e) => {
-              const updated = { ...channel, invert: e.target.checked };
-              onChannelChange(index, updated);
-            }}
-          />
-          <span className="toggle-slider"></span>
-          Invert
-        </label>
+        <div className="channel-controls">
+          {isInputMode ? (
+            <select
+              className="setting-select"
+              value={channel.input || ''}
+              onChange={(e) => {
+                const updated = { ...channel, input: e.target.value };
+                onChannelChange(index, updated);
+              }}
+            >
+              {INPUT_OPTIONS.map((opt) => (
+                <option key={opt} value={opt}>
+                  {opt === '' ? '' : opt}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <select
+              className="setting-select"
+              value={channel.button || ''}
+              onChange={(e) => {
+                const updated = { ...channel, button: e.target.value };
+                onChannelChange(index, updated);
+              }}
+            >
+              {BUTTON_OPTIONS.map((opt) => (
+                <option key={opt} value={opt}>
+                  {opt === '' ? '' : opt}
+                </option>
+              ))}
+            </select>
+          )}
+          <label className="invert-switch">
+            <input
+              type="checkbox"
+              checked={channel.invert}
+              onChange={(e) => {
+                const updated = { ...channel, invert: e.target.checked };
+                onChannelChange(index, updated);
+              }}
+            />
+            <span className="toggle-slider"></span>
+            Invert
+          </label>
+        </div>
       </div>
     </div>
   );

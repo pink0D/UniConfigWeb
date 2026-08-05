@@ -4,7 +4,7 @@ const ConfirmDialog = ({ message, onConfirm, onCancel }) => {
   return (
     <div className="confirm-overlay">
       <div className="confirm-dialog">
-        <p className="confirm-message">{message}</p>
+        <div className="confirm-message">{message}</div>
         <div className="confirm-buttons">
           <button className="btn btn-save" onClick={onConfirm}>
             Confirm

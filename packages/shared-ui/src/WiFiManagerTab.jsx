@@ -13,8 +13,9 @@ const defaultData = {
   networks: [],
 };
 
-const WIFI_CONFIRM_MSG =
-  "The device will be rebooted. If you can't access the device, flash the firmware to reset settings";
+const WIFI_CONFIRM_MSG = (
+  <>The device will be rebooted.<br />If you can't access the device, flash the firmware to reset settings</>
+);
 
 const WiFiForm = ({ data, onDataChange }) => {
   const handleChange = (field, value) => {
@@ -140,6 +141,7 @@ const WiFiManagerTab = ({ configEndpoint }) => {
         configEndpoint={configEndpoint}
         defaultData={defaultData}
         beforeSave={handleBeforeSave}
+        saveDataTransform={(data) => ({ ...data, reboot: true })}
       >
         <WiFiForm />
       </SettingsPage>

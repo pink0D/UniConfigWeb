@@ -217,6 +217,14 @@ body {
   flex-wrap: wrap;
 }
 
+.channel-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
 .mode-switch {
   display: flex;
   gap: 4px;
@@ -324,32 +332,47 @@ body {
   border: 1px solid #d1dce6;
   border-radius: 6px;
   padding: 6px 8px;
-  cursor: grab;
 }
 
-.network-row:active {
-  cursor: grabbing;
+.move-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
 }
 
-.drag-handle {
+.btn-move {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #aab7c2;
-  flex-shrink: 0;
-  padding: 4px;
-  cursor: grab;
+  width: 28px;
+  height: 18px;
+  padding: 0;
+  background: none;
+  border: 1px solid #d1dce6;
+  border-radius: 4px;
+  color: #7f8c8d;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
 }
 
-.add-icon {
-  cursor: pointer;
+.btn-move:hover:not(:disabled) {
+  background: #e8f0fe;
   color: #4a90d9;
 }
 
-.plus-icon {
+.btn-move:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.add-icon-text {
   font-size: 1.3rem;
   font-weight: bold;
   line-height: 1;
+  color: #4a90d9;
+  padding: 0 4px;
+  flex-shrink: 0;
 }
 
 .network-input {
@@ -538,24 +561,29 @@ body {
 
   .channel-row {
     flex-direction: column;
-    align-items: stretch;
+    align-items: flex-start;
+  }
+
+  .setting-select {
+    flex: none;
+    width: auto;
   }
 
   .mode-switch {
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .invert-switch {
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .network-row {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
   }
 
   .network-input {
-    flex: 1 1 40%;
-    min-width: 80px;
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   .save-cancel-bar {
@@ -567,7 +595,14 @@ body {
   }
 
   .radio-group {
-    flex-direction: column;
+    gap: 6px;
+  }
+
+  .radio-option {
+    flex: 1;
+    padding: 8px 10px;
+    font-size: 0.8rem;
+    min-width: 0;
   }
 }
 
