@@ -193,9 +193,15 @@ body {
 
 /* === Channel Settings === */
 .channel-settings {
-  background: #e8f0fe;
+  background: #ffffff;
+  border: 1px solid #d1dce6;
   border-radius: 8px;
   padding: 12px;
+  margin-bottom: 12px;
+}
+
+.channel-settings:last-child {
+  margin-bottom: 0;
 }
 
 .channel-name {

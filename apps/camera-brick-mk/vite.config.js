@@ -6,6 +6,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [react()],
   base: mode === 'production' ? '/settings/' : '/',
   server: {
+    host: true,
     port: 3000,
     open: true,
   },

@@ -55,7 +55,7 @@ const MotorSettings = ({ channel, index, onChannelChange }) => {
           >
             {INPUT_OPTIONS.map((opt) => (
               <option key={opt} value={opt}>
-                {opt === '' ? 'Empty' : opt}
+                {opt === '' ? '' : opt}
               </option>
             ))}
           </select>
@@ -70,7 +70,7 @@ const MotorSettings = ({ channel, index, onChannelChange }) => {
           >
             {BUTTON_OPTIONS.map((opt) => (
               <option key={opt} value={opt}>
-                {opt === '' ? 'Empty' : opt}
+                {opt === '' ? '' : opt}
               </option>
             ))}
           </select>
