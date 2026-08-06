@@ -10,5 +10,8 @@
     "build:shared": "npm run build -w packages/shared-ui",
     "build:camera-brick-mk": "npm run build -w apps/camera-brick-mk",
     "dev:camera-brick-mk": "npm run dev -w apps/camera-brick-mk"
+  },
+  "devDependencies": {
+    "vite-plugin-singlefile": "^2.3.3"
   }
 }

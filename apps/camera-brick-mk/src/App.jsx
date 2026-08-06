@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { SettingsLayout, MouldKingTab, CameraTab, WiFiManagerTab } from 'shared-ui';
 
 const TABS = [
-  { key: 'mouldking', label: 'MouldKing' },
+  { key: 'mouldking', label: 'Mould King' },
   { key: 'camera', label: 'Camera' },
   { key: 'wifi', label: 'WiFi' },
 ];
