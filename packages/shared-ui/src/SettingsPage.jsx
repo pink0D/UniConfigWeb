@@ -14,7 +14,7 @@ const SettingsPage = ({ configEndpoint, defaultData, onDataLoaded, beforeSave, s
       setLoading(true);
       setError(null);
       const config = await ApiService.fetchConfig(configEndpoint);
-      setData(config);
+      setData({ ...defaultData, ...config });
       setOriginalData(JSON.parse(JSON.stringify(config)));
     } catch (err) {
       setError(err.message);

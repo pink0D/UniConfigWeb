@@ -22,7 +22,14 @@ const defaultData = {
   ],
 };
 
+const normalizeModuleType = (type) => {
+  if (!type || type === '') return 'None';
+  return type;
+};
+
 const MouldKingForm = ({ data, onDataChange }) => {
+  const moduleType = normalizeModuleType(data.moduleType);
+
   const handleModuleTypeChange = (type) => {
     const channelCount = getChannelCount(type);
     const currentChannels = data.channels || [];
@@ -43,7 +50,7 @@ const MouldKingForm = ({ data, onDataChange }) => {
     onDataChange({ ...data, channels });
   };
 
-  const channelCount = getChannelCount(data.moduleType);
+  const channelCount = getChannelCount(moduleType);
 
   return (
     <>
@@ -53,13 +60,13 @@ const MouldKingForm = ({ data, onDataChange }) => {
           {MODULE_TYPES.map((type) => (
             <label
               key={type}
-              className={`radio-option ${data.moduleType === type ? 'active' : ''}`}
+              className={`radio-option ${moduleType === type ? 'active' : ''}`}
             >
               <input
                 type="radio"
                 name="moduleType"
                 value={type}
-                checked={data.moduleType === type}
+                checked={moduleType === type}
                 onChange={() => handleModuleTypeChange(type)}
               />
               {type === 'None' ? 'Disabled' : type === 'MK40' ? 'MK 4.0' : 'MK 6.0'}

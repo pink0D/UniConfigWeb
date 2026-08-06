@@ -17,6 +17,7 @@ const defaultData = {
   mirrorX: false,
   mirrorY: false,
   rotation: 0,
+  binning: false,
 };
 
 const CameraForm = ({ data, onDataChange }) => {
@@ -43,6 +44,20 @@ const CameraForm = ({ data, onDataChange }) => {
           ))}
         </select>
       </div>
+
+      {data.cameraType?.includes('OV3660') && (
+        <div className="section-toggle">
+          <span className="toggle-label">Pixel binning</span>
+          <label className="invert-switch">
+            <input
+              type="checkbox"
+              checked={data.binning}
+              onChange={(e) => handleChange('binning', e.target.checked)}
+            />
+            <span className="toggle-slider"></span>
+          </label>
+        </div>
+      )}
 
       <div className="section-toggle">
         <span className="toggle-label">Flip Horizontally</span>
