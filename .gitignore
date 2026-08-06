@@ -4,6 +4,7 @@ node_modules/
 # build output
 build/
 dist/
+dist-esp32/
 
 # environment files
 .env
