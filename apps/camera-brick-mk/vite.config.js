@@ -44,7 +44,7 @@ export default defineConfig(({ mode }) => ({
     react(),
     mode === 'production' ? viteSingleFile() : undefined,
     mode === 'production' ? gzipOutput() : undefined,
-    removeExampleConfigs(),
+    mode === 'production' ? removeExampleConfigs() : undefined,
   ].filter(Boolean),
   base: mode === 'production' ? '/settings/' : '/',
   server: {
