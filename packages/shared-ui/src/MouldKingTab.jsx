@@ -3,12 +3,26 @@ import SettingsPage from './SettingsPage.jsx';
 import ModuleSettings from './ModuleSettings.jsx';
 import { cleanChannel } from './ChannelSettings.jsx';
 
-const MODULE_TYPES = ['None', 'MK40', 'MK60'];
+const getModuleTypes = (enableMultiModule) => {
+  const types = ['None', 'MK40'];
+  if (enableMultiModule) {
+    types.push('MK40x3');
+  }
+  types.push('MK60');
+  return types;
+};
 
 const MOULDKING_CHANNEL_LABELS = ['Channel A', 'Channel B', 'Channel C', 'Channel D', 'Channel E', 'Channel F'];
 
+const MOULDKING_MULTI_CHANNEL_LABELS = [
+  'Module 1 - Channel A', 'Module 1 - Channel B', 'Module 1 - Channel C', 'Module 1 - Channel D',
+  'Module 2 - Channel A', 'Module 2 - Channel B', 'Module 2 - Channel C', 'Module 2 - Channel D',
+  'Module 3 - Channel A', 'Module 3 - Channel B', 'Module 3 - Channel C', 'Module 3 - Channel D',
+];
+
 const getChannelCount = (moduleType) => {
   if (moduleType === 'MK40') return 4;
+  if (moduleType === 'MK40x3') return 12;
   if (moduleType === 'MK60') return 6;
   return 0;
 };
@@ -30,15 +44,17 @@ const normalizeModuleType = (type) => {
   return type;
 };
 
-const MouldKingForm = ({ data, onDataChange }) => {
+const MouldKingForm = ({ data, onDataChange, channelType, enableMultiModule }) => {
   const moduleType = normalizeModuleType(data.moduleType);
+  const moduleTypes = getModuleTypes(enableMultiModule);
 
   const handleModuleTypeChange = (type) => {
     const channelCount = getChannelCount(type);
     const currentChannels = data.channels || [];
     const channels = [];
     const emptyChannel = { input: '', invertInput: false, button1: '', button2: '', brake: '', brakeTimeout: 50, minPower: 0, maxPower: 100, servoUnits: 'angle', servoMin: 500, servoMax: 2500, servoMaxAngle: 180, servoCenterPos: 0, sticky: false, buttonStop: '', steps: 0, type: '' };
-    for (let i = 0; i < 6; i++) {
+    const maxChannels = 12;
+    for (let i = 0; i < maxChannels; i++) {
       if (i < channelCount) {
         channels.push(currentChannels[i] || emptyChannel);
       } else {
@@ -61,7 +77,7 @@ const MouldKingForm = ({ data, onDataChange }) => {
       <div className="form-field">
         <span className="form-label">Module Type</span>
         <div className="radio-group">
-          {MODULE_TYPES.map((type) => (
+          {moduleTypes.map((type) => (
             <label
               key={type}
               className={`radio-option ${moduleType === type ? 'active' : ''}`}
@@ -73,7 +89,7 @@ const MouldKingForm = ({ data, onDataChange }) => {
                 checked={moduleType === type}
                 onChange={() => handleModuleTypeChange(type)}
               />
-              {type === 'None' ? 'Disabled' : type === 'MK40' ? 'MK 4.0' : 'MK 6.0'}
+              {type === 'None' ? 'Disabled' : type === 'MK40' ? 'MK 4.0' : type === 'MK40x3' ? 'MK 4.0 x3' : 'MK 6.0'}
             </label>
           ))}
         </div>
@@ -81,8 +97,8 @@ const MouldKingForm = ({ data, onDataChange }) => {
       {channelCount > 0 && (
         <ModuleSettings
           channels={data.channels.slice(0, channelCount)}
-          channelLabels={MOULDKING_CHANNEL_LABELS}
-          channelType="mk_advanced"
+          channelLabels={moduleType === 'MK40x3' ? MOULDKING_MULTI_CHANNEL_LABELS : MOULDKING_CHANNEL_LABELS}
+          channelType={channelType}
           onChannelChange={handleChannelChange}
         />
       )}
@@ -96,14 +112,14 @@ const cleanChannelData = (data) => {
   return cleaned;
 };
 
-const MouldKingTab = ({ configEndpoint }) => {
+const MouldKingTab = ({ configEndpoint, channelType = 'mk_advanced', enableMultiModule = false }) => {
   return (
     <SettingsPage
       configEndpoint={configEndpoint}
       defaultData={defaultData}
       saveDataTransform={cleanChannelData}
     >
-      <MouldKingForm />
+      <MouldKingForm channelType={channelType} enableMultiModule={enableMultiModule} />
     </SettingsPage>
   );
 };
