@@ -1,0 +1,38 @@
+{
+  "channelCount": 2,
+  "channels": [
+    {
+      "label": "Motor A",
+      "type": "Analog",
+      "input": "RightTrigger",
+      "invertInput": false,
+      "reverseButton": "Triangle",
+      "brake": "LeftTrigger",
+      "brakeTimeout": 300,
+      "button1": "",
+      "button2": "",
+      "buttonStop": "",
+      "sticky": false,
+      "stepCount": 0,
+      "servoUnits": "micros",
+      "servoMin": 1000,
+      "servoMax": 2000,
+      "servoMaxAngle": 90,
+      "servoCenterPos": 0
+    },
+    {
+      "label": "Motor B",
+      "type": "Analog",
+      "input": "RightTrigger",
+      "invertInput": false,
+      "reverseButton": "Triangle",
+      "brake": "LeftTrigger",
+      "brakeTimeout": 300,
+      "button1": "",
+      "button2": "",
+      "buttonStop": "",
+      "sticky": false,
+      "stepCount": 0
+    }
+  ]
+}

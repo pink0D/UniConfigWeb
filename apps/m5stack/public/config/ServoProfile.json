@@ -1,0 +1,37 @@
+{
+  "channelCount": 2,
+  "channels": [
+    {
+      "label": "Servo 1 - Yellow wire",
+      "type": "Analog",
+      "input": "RightTrigger",
+      "invertInput": false,
+      "reverseButton": "Triangle",
+      "brake": "LeftTrigger",
+      "brakeTimeout": 300,
+      "button1": "",
+      "button2": "",
+      "buttonStop": "",
+      "sticky": false,
+      "stepCount": 0,
+      "servoUnits": "micros",
+      "servoMin": 1000,
+      "servoMax": 2000,
+      "servoMaxAngle": 90,
+      "servoCenterPos": 0
+    },
+    {
+      "type": "Analog",
+      "input": "RightTrigger",
+      "invertInput": false,
+      "reverseButton": "Triangle",
+      "brake": "LeftTrigger",
+      "brakeTimeout": 300,
+      "button1": "",
+      "button2": "",
+      "buttonStop": "",
+      "sticky": false,
+      "stepCount": 0
+    }
+  ]
+}

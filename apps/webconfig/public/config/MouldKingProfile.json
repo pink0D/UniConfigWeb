@@ -1,0 +1,64 @@
+{
+  "moduleType": "MK40",
+  "advancedChannels": true,
+  "enableMultiModule": true,
+  "channels": [
+    {
+      "type": "Analog",
+      "input": "RightTrigger",
+      "invertInput": false,
+      "reverseButton": "Triangle",
+      "brake": "LeftTrigger",
+      "brakeTimeout": 300,
+      "button1": "",
+      "button2": "",
+      "buttonStop": "",
+      "sticky": false,
+      "stepCount": 0,
+      "servoUnits": "micros",
+      "servoMin": 1000,
+      "servoMax": 2000,
+      "servoMaxAngle": 90,
+      "servoCenterPos": 0
+    },
+    {
+      "type": "Analog",
+      "input": "RightTrigger",
+      "invertInput": false,
+      "reverseButton": "Triangle",
+      "brake": "LeftTrigger",
+      "brakeTimeout": 300,
+      "button1": "",
+      "button2": "",
+      "buttonStop": "",
+      "sticky": false,
+      "stepCount": 0
+    },
+    {
+      "type": "Analog",
+      "input": "RightTrigger",
+      "invertInput": false,
+      "reverseButton": "Triangle",
+      "brake": "",
+      "brakeTimeout": 300,
+      "button1": "",
+      "button2": "",
+      "buttonStop": "",
+      "sticky": false,
+      "stepCount": 0
+    },
+    {
+      "type": "Analog",
+      "input": "RightTrigger",
+      "invertInput": false,
+      "reverseButton": "Triangle",
+      "brake": "",
+      "brakeTimeout": 300,
+      "button1": "",
+      "button2": "",
+      "buttonStop": "",
+      "sticky": false,
+      "stepCount": 0
+    }
+  ]
+}

@@ -3,13 +3,21 @@
   "version": "1.0.0",
   "private": true,
   "workspaces": [
-    "packages/*",
     "apps/*"
   ],
   "scripts": {
-    "build:shared": "npm run build -w packages/shared-ui",
-    "build:camera-brick-mk": "npm run build -w apps/camera-brick-mk",
-    "dev:camera-brick-mk": "npm run dev -w apps/camera-brick-mk"
+    "build": "npm run build -w apps/webconfig && npm run build -w apps/m5stack && npm run build -w apps/esp32cam && npm run build -w apps/geek_mk && npm run build -w apps/geekshield",
+    "build:webconfig": "npm run build -w apps/webconfig",
+    "build:m5stack": "npm run build -w apps/m5stack",
+    "build:geek_mk": "npm run build -w apps/geek_mk",
+    "build:geekshield": "npm run build -w apps/geekshield",
+    "build:esp32cam": "npm run build -w apps/esp32cam",
+    "dev": "npm run dev -w apps/webconfig",
+    "dev:webconfig": "npm run dev -w apps/webconfig",
+    "dev:m5stack": "npm run dev -w apps/m5stack",
+    "dev:geek_mk": "npm run dev -w apps/geek_mk",
+    "dev:geekshield": "npm run dev -w apps/geekshield",
+    "dev:esp32cam": "npm run dev -w apps/esp32cam"
   },
   "devDependencies": {
     "vite-plugin-singlefile": "^2.3.3"
