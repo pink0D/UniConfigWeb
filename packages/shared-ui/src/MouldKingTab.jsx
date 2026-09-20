@@ -112,7 +112,7 @@ const cleanChannelData = (data) => {
   return cleaned;
 };
 
-const MouldKingTab = ({ configEndpoint, channelType = 'mk_advanced', enableMultiModule = false }) => {
+const MouldKingTab = ({ configEndpoint, channelType = 'mk_advanced', enableMultiModule = false, label = 'Mould King' }) => {
   return (
     <SettingsPage
       configEndpoint={configEndpoint}

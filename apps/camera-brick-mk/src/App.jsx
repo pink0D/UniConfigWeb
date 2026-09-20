@@ -14,7 +14,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Navigate to="mouldking" replace />} />
         <Route path="/mouldking" element={
-          <MouldKingTab configEndpoint="/config/MouldKingProfile" channelType="mk_simple" enableMultiModule={true} />
+          <MouldKingTab configEndpoint="/config/MouldKingProfile" channelType="mk_simple" enableMultiModule={true} label="Mould King" />
         } />
         <Route path="/camera" element={
           <CameraTab configEndpoint="/config/ESP32Camera" />
