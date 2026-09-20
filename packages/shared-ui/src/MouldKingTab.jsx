@@ -82,7 +82,7 @@ const MouldKingForm = ({ data, onDataChange }) => {
         <ModuleSettings
           channels={data.channels.slice(0, channelCount)}
           channelLabels={MOULDKING_CHANNEL_LABELS}
-          channelType="mk_simple"
+          channelType="mk_advanced"
           onChannelChange={handleChannelChange}
         />
       )}

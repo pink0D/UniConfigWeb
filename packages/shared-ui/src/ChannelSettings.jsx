@@ -37,7 +37,7 @@ export const cleanChannel = (channel) => {
     clean.buttonStop = '';
     clean.sticky = false;
     clean.steps = 0;
-  } else if (mode === 'buttons' || mode === 'stepper') {
+  } else if (mode === 'Buttons' || mode === 'Stepper') {
     // Buttons / Stepper: clear analog-related fields
     clean.input = '';
     clean.invertInput = false;
@@ -84,22 +84,22 @@ const ChannelSettings = ({ channel, index, label, channelType, onChannelChange }
             />
             Analog
           </label>
-          <label className={`mode-option ${mode === 'buttons' ? 'active' : ''}`}>
+          <label className={`mode-option ${mode === 'Buttons' ? 'active' : ''}`}>
             <input
               type="radio"
               name={`mode-${index}`}
-              checked={mode === 'buttons'}
-              onChange={() => handleModeChange('buttons')}
+              checked={mode === 'Buttons'}
+              onChange={() => handleModeChange('Buttons')}
             />
             Buttons
           </label>
           {channelType !== 'mk_simple' && (
-          <label className={`mode-option ${mode === 'stepper' ? 'active' : ''}`}>
+          <label className={`mode-option ${mode === 'Stepper' ? 'active' : ''}`}>
             <input
               type="radio"
               name={`mode-${index}`}
-              checked={mode === 'stepper'}
-              onChange={() => handleModeChange('stepper')}
+              checked={mode === 'Stepper'}
+              onChange={() => handleModeChange('Stepper')}
             />
             Stepper
           </label>
@@ -212,7 +212,7 @@ const ChannelSettings = ({ channel, index, label, channelType, onChannelChange }
                 )}
               </div>
             )}
-            {mode === 'buttons' && (
+            {mode === 'Buttons' && (
               <div className="analog-settings">
                 <div className="channel-row">
                   <label className="setting-label">Up</label>
@@ -266,7 +266,7 @@ const ChannelSettings = ({ channel, index, label, channelType, onChannelChange }
                 )}
               </div>
             )}
-            {mode === 'stepper' && (
+            {mode === 'Stepper' && (
               <div className="analog-settings">
                 <div className="channel-row">
                   <label className="setting-label">Up</label>
