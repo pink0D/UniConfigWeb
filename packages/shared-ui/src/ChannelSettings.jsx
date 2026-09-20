@@ -5,10 +5,51 @@ const BUTTON_OPTIONS = ['', 'DPadUp', 'DPadDown', 'DPadLeft', 'DPadRight', 'Cros
 const BRAKE_OPTIONS = ['', 'L2', 'R2'];
 const SERVO_UNITS_OPTIONS = ['angle', 'micros'];
 
-const CHANNEL_LABELS = ['Channel A', 'Channel B', 'Channel C', 'Channel D', 'Channel E', 'Channel F'];
 const STEPS_OPTIONS = Array.from({ length: 10 }, (_, i) => i + 1);
 
-const MotorSettings = ({ channel, index, onChannelChange }) => {
+export const cleanChannel = (channel) => {
+  const clean = { ...channel };
+  const mode = clean.type || '';
+
+  if (mode === '') {
+    // Disabled: clear all parameters to empty/zero values
+    clean.input = '';
+    clean.invertInput = false;
+    clean.reverseButton = '';
+    clean.button1 = '';
+    clean.button2 = '';
+    clean.buttonStop = '';
+    clean.sticky = false;
+    clean.steps = 0;
+    clean.brake = '';
+    clean.brakeTimeout = 0;
+    clean.minPower = 0;
+    clean.maxPower = 0;
+    clean.servoUnits = 'angle';
+    clean.servoMin = 0;
+    clean.servoMax = 0;
+    clean.servoMaxAngle = 0;
+    clean.servoCenterPos = 0;
+  } else if (mode === 'Analog') {
+    // Analog: clear button/stepper-related fields
+    clean.button1 = '';
+    clean.button2 = '';
+    clean.buttonStop = '';
+    clean.sticky = false;
+    clean.steps = 0;
+  } else if (mode === 'buttons' || mode === 'stepper') {
+    // Buttons / Stepper: clear analog-related fields
+    clean.input = '';
+    clean.invertInput = false;
+    clean.reverseButton = '';
+    clean.brake = '';
+    clean.brakeTimeout = 0;
+  }
+
+  return clean;
+};
+
+const ChannelSettings = ({ channel, index, label, channelType, onChannelChange }) => {
   const mode = channel.type || '';
 
   const handleModeChange = (newType) => {
@@ -18,7 +59,7 @@ const MotorSettings = ({ channel, index, onChannelChange }) => {
 
   return (
     <div className="channel-settings">
-      <h4 className="channel-name">{CHANNEL_LABELS[index]}</h4>
+      <h4 className="channel-name">{label}</h4>
       <div className="channel-row">
         <div className="mode-switch">
           <label className={`mode-option ${mode === '' ? 'active' : ''}`}>
@@ -111,6 +152,7 @@ const MotorSettings = ({ channel, index, onChannelChange }) => {
                     </select>
                   </div>
                 )}
+                {channelType !== 'servo' && (
                 <div className="channel-row">
                   <label className="setting-label">Brake</label>
                   <select
@@ -128,7 +170,8 @@ const MotorSettings = ({ channel, index, onChannelChange }) => {
                     ))}
                   </select>
                 </div>
-                {channel.brake && (
+                )}
+                {channel.brake && channelType === 'mk' && (
                   <div className="channel-row">
                     <label className="setting-label">Braking time</label>
                     <button
@@ -285,6 +328,7 @@ const MotorSettings = ({ channel, index, onChannelChange }) => {
                 </div>
               </div>
             )}
+            {channelType === 'hdriver' && (
             <div className="channel-row">
               <label className="setting-label">Min power</label>
               <button
@@ -316,6 +360,8 @@ const MotorSettings = ({ channel, index, onChannelChange }) => {
                 }}
               >+</button>
             </div>
+            )}
+            {(channelType === 'hdriver' || channelType === 'mk') && (
             <div className="channel-row">
               <label className="setting-label">Max power</label>
               <button
@@ -347,6 +393,9 @@ const MotorSettings = ({ channel, index, onChannelChange }) => {
                 }}
               >+</button>
             </div>
+            )}
+            {channelType === 'servo' && (
+            <>
             <div className="channel-row">
               <label className="setting-label">Servo units</label>
               <select
@@ -494,6 +543,8 @@ const MotorSettings = ({ channel, index, onChannelChange }) => {
                 </div>
               </>
             )}
+            </>
+            )}
             </div>
           </div>
         )}
@@ -502,4 +553,4 @@ const MotorSettings = ({ channel, index, onChannelChange }) => {
   );
 };
 
-export default MotorSettings;
+export default ChannelSettings;

@@ -1,8 +1,11 @@
 import React from 'react';
 import SettingsPage from './SettingsPage.jsx';
-import MotorSettings from './MotorSettings.jsx';
+import ModuleSettings from './ModuleSettings.jsx';
+import { cleanChannel } from './ChannelSettings.jsx';
 
 const MODULE_TYPES = ['None', 'MK40', 'MK60'];
+
+const MOULDKING_CHANNEL_LABELS = ['Channel A', 'Channel B', 'Channel C', 'Channel D', 'Channel E', 'Channel F'];
 
 const getChannelCount = (moduleType) => {
   if (moduleType === 'MK40') return 4;
@@ -76,20 +79,21 @@ const MouldKingForm = ({ data, onDataChange }) => {
         </div>
       </div>
       {channelCount > 0 && (
-        <div>
-          <h3 className="section-title">Channels</h3>
-          {data.channels.slice(0, channelCount).map((channel, index) => (
-            <MotorSettings
-              key={index}
-              channel={channel}
-              index={index}
-              onChannelChange={handleChannelChange}
-            />
-          ))}
-        </div>
+        <ModuleSettings
+          channels={data.channels.slice(0, channelCount)}
+          channelLabels={MOULDKING_CHANNEL_LABELS}
+          channelType="mk"
+          onChannelChange={handleChannelChange}
+        />
       )}
     </>
   );
+};
+
+const cleanChannelData = (data) => {
+  const cleaned = JSON.parse(JSON.stringify(data));
+  cleaned.channels = cleaned.channels.map((channel) => cleanChannel(channel));
+  return cleaned;
 };
 
 const MouldKingTab = ({ configEndpoint }) => {
@@ -97,6 +101,7 @@ const MouldKingTab = ({ configEndpoint }) => {
     <SettingsPage
       configEndpoint={configEndpoint}
       defaultData={defaultData}
+      saveDataTransform={cleanChannelData}
     >
       <MouldKingForm />
     </SettingsPage>
