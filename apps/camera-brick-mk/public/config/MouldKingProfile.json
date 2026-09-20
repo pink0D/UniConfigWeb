@@ -12,7 +12,12 @@
       "button2": "",
       "buttonStop": "",
       "sticky": false,
-      "steps": 0
+      "steps": 0,
+      "servoUnits": "micros",
+      "servoMin": 1000,
+      "servoMax": 2000,
+      "servoMaxAngle": 90,
+      "servoCenter": 0
     },
     {
       "type": "Analog",

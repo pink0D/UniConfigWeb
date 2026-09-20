@@ -3,6 +3,7 @@ import React from 'react';
 const INPUT_OPTIONS = ['', 'LeftStickX', 'LeftStickY', 'RightStickX', 'RightStickY', 'LeftTrigger', 'RightTrigger'];
 const BUTTON_OPTIONS = ['', 'DPadUp', 'DPadDown', 'DPadLeft', 'DPadRight', 'Cross', 'Circle', 'Square', 'Triangle', 'L1', 'R1', 'L2', 'R2', 'L3', 'R3', 'Share', 'Options'];
 const BRAKE_OPTIONS = ['', 'L2', 'R2'];
+const SERVO_UNITS_OPTIONS = ['angle', 'micros'];
 
 const CHANNEL_LABELS = ['Channel A', 'Channel B', 'Channel C', 'Channel D', 'Channel E', 'Channel F'];
 const STEPS_OPTIONS = Array.from({ length: 10 }, (_, i) => i + 1);
@@ -346,6 +347,153 @@ const MotorSettings = ({ channel, index, onChannelChange }) => {
                 }}
               >+</button>
             </div>
+            <div className="channel-row">
+              <label className="setting-label">Servo units</label>
+              <select
+                className="setting-select"
+                value={channel.servoUnits || 'angle'}
+                onChange={(e) => {
+                  const updated = { ...channel, servoUnits: e.target.value };
+                  onChannelChange(index, updated);
+                }}
+              >
+                {SERVO_UNITS_OPTIONS.map((opt) => (
+                  <option key={opt} value={opt}>{opt}</option>
+                ))}
+              </select>
+            </div>
+            {channel.servoUnits === 'micros' && (
+              <>
+                <div className="channel-row">
+                  <label className="setting-label">Servo min</label>
+                  <button
+                    className="btn-stepper"
+                    onClick={() => {
+                      const val = Math.max(500, (channel.servoMin ?? 500) - 50);
+                      onChannelChange(index, { ...channel, servoMin: val });
+                    }}
+                  >−</button>
+                  <input
+                    className="stepper-input"
+                    type="number"
+                    min={500}
+                    max={2500}
+                    step={50}
+                    value={channel.servoMin ?? 500}
+                    onChange={(e) => {
+                      const v = parseInt(e.target.value, 10);
+                      if (!isNaN(v) && v >= 500 && v <= 2500) {
+                        onChannelChange(index, { ...channel, servoMin: v });
+                      }
+                    }}
+                  />
+                  <button
+                    className="btn-stepper"
+                    onClick={() => {
+                      const val = Math.min(2500, (channel.servoMin ?? 500) + 50);
+                      onChannelChange(index, { ...channel, servoMin: val });
+                    }}
+                  >+</button>
+                </div>
+                <div className="channel-row">
+                  <label className="setting-label">Servo max</label>
+                  <button
+                    className="btn-stepper"
+                    onClick={() => {
+                      const val = Math.max(500, (channel.servoMax ?? 2500) - 50);
+                      onChannelChange(index, { ...channel, servoMax: val });
+                    }}
+                  >−</button>
+                  <input
+                    className="stepper-input"
+                    type="number"
+                    min={500}
+                    max={2500}
+                    step={50}
+                    value={channel.servoMax ?? 2500}
+                    onChange={(e) => {
+                      const v = parseInt(e.target.value, 10);
+                      if (!isNaN(v) && v >= 500 && v <= 2500) {
+                        onChannelChange(index, { ...channel, servoMax: v });
+                      }
+                    }}
+                  />
+                  <button
+                    className="btn-stepper"
+                    onClick={() => {
+                      const val = Math.min(2500, (channel.servoMax ?? 2500) + 50);
+                      onChannelChange(index, { ...channel, servoMax: val });
+                    }}
+                  >+</button>
+                </div>
+              </>
+            )}
+            {channel.servoUnits !== 'micros' && (
+              <>
+                <div className="channel-row">
+                  <label className="setting-label">Servo max angle</label>
+                  <button
+                    className="btn-stepper"
+                    onClick={() => {
+                      const val = Math.max(5, (channel.servoMaxAngle ?? 180) - 5);
+                      onChannelChange(index, { ...channel, servoMaxAngle: val });
+                    }}
+                  >−</button>
+                  <input
+                    className="stepper-input"
+                    type="number"
+                    min={5}
+                    max={180}
+                    step={5}
+                    value={channel.servoMaxAngle ?? 180}
+                    onChange={(e) => {
+                      const v = parseInt(e.target.value, 10);
+                      if (!isNaN(v) && v >= 5 && v <= 180) {
+                        onChannelChange(index, { ...channel, servoMaxAngle: v });
+                      }
+                    }}
+                  />
+                  <button
+                    className="btn-stepper"
+                    onClick={() => {
+                      const val = Math.min(180, (channel.servoMaxAngle ?? 180) + 5);
+                      onChannelChange(index, { ...channel, servoMaxAngle: val });
+                    }}
+                  >+</button>
+                </div>
+                <div className="channel-row">
+                  <label className="setting-label">Servo center pos</label>
+                  <button
+                    className="btn-stepper"
+                    onClick={() => {
+                      const val = Math.max(-180, (channel.servoCenterPos ?? 0) - 5);
+                      onChannelChange(index, { ...channel, servoCenterPos: val });
+                    }}
+                  >−</button>
+                  <input
+                    className="stepper-input"
+                    type="number"
+                    min={-180}
+                    max={180}
+                    step={5}
+                    value={channel.servoCenterPos ?? 0}
+                    onChange={(e) => {
+                      const v = parseInt(e.target.value, 10);
+                      if (!isNaN(v) && v >= -180 && v <= 180) {
+                        onChannelChange(index, { ...channel, servoCenterPos: v });
+                      }
+                    }}
+                  />
+                  <button
+                    className="btn-stepper"
+                    onClick={() => {
+                      const val = Math.min(180, (channel.servoCenterPos ?? 0) + 5);
+                      onChannelChange(index, { ...channel, servoCenterPos: val });
+                    }}
+                  >+</button>
+                </div>
+              </>
+            )}
             </div>
           </div>
         )}

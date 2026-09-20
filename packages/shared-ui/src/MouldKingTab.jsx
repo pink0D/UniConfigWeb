@@ -13,12 +13,12 @@ const getChannelCount = (moduleType) => {
 const defaultData = {
   moduleType: 'None',
   channels: [
-    { input: '', invertInput: false, button1: '', button2: '', brake: '', brakeTimeout: 50, minPower: 0, maxPower: 100, sticky: false, buttonStop: '', steps: 0, type: '' },
-    { input: '', invertInput: false, button1: '', button2: '', brake: '', brakeTimeout: 50, minPower: 0, maxPower: 100, sticky: false, buttonStop: '', steps: 0, type: '' },
-    { input: '', invertInput: false, button1: '', button2: '', brake: '', brakeTimeout: 50, minPower: 0, maxPower: 100, sticky: false, buttonStop: '', steps: 0, type: '' },
-    { input: '', invertInput: false, button1: '', button2: '', brake: '', brakeTimeout: 50, minPower: 0, maxPower: 100, sticky: false, buttonStop: '', steps: 0, type: '' },
-    { input: '', invertInput: false, button1: '', button2: '', brake: '', brakeTimeout: 50, minPower: 0, maxPower: 100, sticky: false, buttonStop: '', steps: 0, type: '' },
-    { input: '', invertInput: false, button1: '', button2: '', brake: '', brakeTimeout: 50, minPower: 0, maxPower: 100, sticky: false, buttonStop: '', steps: 0, type: '' },
+    { input: '', invertInput: false, button1: '', button2: '', brake: '', brakeTimeout: 50, minPower: 0, maxPower: 100, servoUnits: 'angle', servoMin: 500, servoMax: 2500, servoMaxAngle: 180, servoCenterPos: 0, sticky: false, buttonStop: '', steps: 0, type: '' },
+    { input: '', invertInput: false, button1: '', button2: '', brake: '', brakeTimeout: 50, minPower: 0, maxPower: 100, servoUnits: 'angle', servoMin: 500, servoMax: 2500, servoMaxAngle: 180, servoCenterPos: 0, sticky: false, buttonStop: '', steps: 0, type: '' },
+    { input: '', invertInput: false, button1: '', button2: '', brake: '', brakeTimeout: 50, minPower: 0, maxPower: 100, servoUnits: 'angle', servoMin: 500, servoMax: 2500, servoMaxAngle: 180, servoCenterPos: 0, sticky: false, buttonStop: '', steps: 0, type: '' },
+    { input: '', invertInput: false, button1: '', button2: '', brake: '', brakeTimeout: 50, minPower: 0, maxPower: 100, servoUnits: 'angle', servoMin: 500, servoMax: 2500, servoMaxAngle: 180, servoCenterPos: 0, sticky: false, buttonStop: '', steps: 0, type: '' },
+    { input: '', invertInput: false, button1: '', button2: '', brake: '', brakeTimeout: 50, minPower: 0, maxPower: 100, servoUnits: 'angle', servoMin: 500, servoMax: 2500, servoMaxAngle: 180, servoCenterPos: 0, sticky: false, buttonStop: '', steps: 0, type: '' },
+    { input: '', invertInput: false, button1: '', button2: '', brake: '', brakeTimeout: 50, minPower: 0, maxPower: 100, servoUnits: 'angle', servoMin: 500, servoMax: 2500, servoMaxAngle: 180, servoCenterPos: 0, sticky: false, buttonStop: '', steps: 0, type: '' },
   ],
 };
 
@@ -34,7 +34,7 @@ const MouldKingForm = ({ data, onDataChange }) => {
     const channelCount = getChannelCount(type);
     const currentChannels = data.channels || [];
     const channels = [];
-    const emptyChannel = { input: '', invertInput: false, button1: '', button2: '', brake: '', brakeTimeout: 50, minPower: 0, maxPower: 100, sticky: false, buttonStop: '', steps: 0, type: '' };
+    const emptyChannel = { input: '', invertInput: false, button1: '', button2: '', brake: '', brakeTimeout: 50, minPower: 0, maxPower: 100, servoUnits: 'angle', servoMin: 500, servoMax: 2500, servoMaxAngle: 180, servoCenterPos: 0, sticky: false, buttonStop: '', steps: 0, type: '' };
     for (let i = 0; i < 6; i++) {
       if (i < channelCount) {
         channels.push(currentChannels[i] || emptyChannel);
