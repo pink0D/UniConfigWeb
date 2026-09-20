@@ -52,6 +52,10 @@ export const cleanChannel = (channel) => {
 const ChannelSettings = ({ channel, index, label, channelType, onChannelChange }) => {
   const mode = channel.type || '';
 
+  const inputOptions = channelType === 'mk_simple'
+    ? INPUT_OPTIONS.filter(opt => opt !== 'LeftTrigger' && opt !== 'RightTrigger')
+    : INPUT_OPTIONS;
+
   const handleModeChange = (newType) => {
     const updated = { ...channel, type: newType };
     onChannelChange(index, updated);
@@ -89,6 +93,7 @@ const ChannelSettings = ({ channel, index, label, channelType, onChannelChange }
             />
             Buttons
           </label>
+          {channelType !== 'mk_simple' && (
           <label className={`mode-option ${mode === 'stepper' ? 'active' : ''}`}>
             <input
               type="radio"
@@ -98,6 +103,7 @@ const ChannelSettings = ({ channel, index, label, channelType, onChannelChange }
             />
             Stepper
           </label>
+          )}
         </div>
         {mode !== '' && (
           <div className="channel-controls">
@@ -114,7 +120,7 @@ const ChannelSettings = ({ channel, index, label, channelType, onChannelChange }
                       onChannelChange(index, updated);
                     }}
                   >
-                    {INPUT_OPTIONS.map((opt) => (
+                    {inputOptions.map((opt) => (
                       <option key={opt} value={opt}>
                         {opt === '' ? '(disabled)' : opt}
                       </option>
@@ -152,7 +158,7 @@ const ChannelSettings = ({ channel, index, label, channelType, onChannelChange }
                     </select>
                   </div>
                 )}
-                {channelType !== 'servo' && (
+                {channelType !== 'servo' && channelType !== 'mk_simple' && (
                 <div className="channel-row">
                   <label className="setting-label">Brake</label>
                   <select
@@ -171,7 +177,7 @@ const ChannelSettings = ({ channel, index, label, channelType, onChannelChange }
                   </select>
                 </div>
                 )}
-                {channel.brake && channelType === 'mk' && (
+                {channel.brake && channelType === 'mk_advanced' && (
                   <div className="channel-row">
                     <label className="setting-label">Braking time</label>
                     <button
@@ -361,7 +367,7 @@ const ChannelSettings = ({ channel, index, label, channelType, onChannelChange }
               >+</button>
             </div>
             )}
-            {(channelType === 'hdriver' || channelType === 'mk') && (
+            {(channelType === 'hdriver' || channelType === 'mk_advanced') && (
             <div className="channel-row">
               <label className="setting-label">Max power</label>
               <button
