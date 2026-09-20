@@ -13,12 +13,12 @@ const getChannelCount = (moduleType) => {
 const defaultData = {
   moduleType: 'None',
   channels: [
-    { input: '', button: '', invert: false },
-    { input: '', button: '', invert: false },
-    { input: '', button: '', invert: false },
-    { input: '', button: '', invert: false },
-    { input: '', button: '', invert: false },
-    { input: '', button: '', invert: false },
+    { input: '', invertInput: false, button1: '', button2: '', brake: '', brakeTimeout: 50, minPower: 0, maxPower: 100, sticky: false, buttonStop: '', steps: 0, type: '' },
+    { input: '', invertInput: false, button1: '', button2: '', brake: '', brakeTimeout: 50, minPower: 0, maxPower: 100, sticky: false, buttonStop: '', steps: 0, type: '' },
+    { input: '', invertInput: false, button1: '', button2: '', brake: '', brakeTimeout: 50, minPower: 0, maxPower: 100, sticky: false, buttonStop: '', steps: 0, type: '' },
+    { input: '', invertInput: false, button1: '', button2: '', brake: '', brakeTimeout: 50, minPower: 0, maxPower: 100, sticky: false, buttonStop: '', steps: 0, type: '' },
+    { input: '', invertInput: false, button1: '', button2: '', brake: '', brakeTimeout: 50, minPower: 0, maxPower: 100, sticky: false, buttonStop: '', steps: 0, type: '' },
+    { input: '', invertInput: false, button1: '', button2: '', brake: '', brakeTimeout: 50, minPower: 0, maxPower: 100, sticky: false, buttonStop: '', steps: 0, type: '' },
   ],
 };
 
@@ -34,11 +34,12 @@ const MouldKingForm = ({ data, onDataChange }) => {
     const channelCount = getChannelCount(type);
     const currentChannels = data.channels || [];
     const channels = [];
+    const emptyChannel = { input: '', invertInput: false, button1: '', button2: '', brake: '', brakeTimeout: 50, minPower: 0, maxPower: 100, sticky: false, buttonStop: '', steps: 0, type: '' };
     for (let i = 0; i < 6; i++) {
       if (i < channelCount) {
-        channels.push(currentChannels[i] || { input: '', button: '', invert: false });
+        channels.push(currentChannels[i] || emptyChannel);
       } else {
-        channels.push({ input: '', button: '', invert: false });
+        channels.push({ ...emptyChannel });
       }
     }
     onDataChange({ ...data, moduleType: type, channels });

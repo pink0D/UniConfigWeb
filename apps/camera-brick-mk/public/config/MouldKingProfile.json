@@ -1,35 +1,57 @@
 {
-  "moduleType": "MK60",
+  "moduleType": "MK40",
   "channels": [
     {
-      "input": "LeftStickY",
-      "button": "",
-      "invert": false
+      "type": "Analog",
+      "input": "RightTrigger",
+      "invertInput": false,
+      "reverseButton": "Triangle",
+      "brake": "L2",
+      "brakeTimeout": 300,
+      "button1": "",
+      "button2": "",
+      "buttonStop": "",
+      "sticky": false,
+      "steps": 0
     },
     {
-      "input": "RightStickY",
-      "button": "",
-      "invert": false
+      "type": "Analog",
+      "input": "RightTrigger",
+      "invertInput": false,
+      "reverseButton": "Triangle",
+      "brake": "L2",
+      "brakeTimeout": 300,
+      "button1": "",
+      "button2": "",
+      "buttonStop": "",
+      "sticky": false,
+      "steps": 0
     },
     {
-      "input": "",
-      "button": "DPadUp",
-      "invert": false
+      "type": "Analog",
+      "input": "RightTrigger",
+      "invertInput": false,
+      "reverseButton": "Triangle",
+      "brake": "",
+      "brakeTimeout": 300,
+      "button1": "",
+      "button2": "",
+      "buttonStop": "",
+      "sticky": false,
+      "steps": 0
     },
     {
-      "input": "",
-      "button": "DPadDown",
-      "invert": true
-    },
-    {
-      "input": "LeftStickY",
-      "button": "",
-      "invert": false
-    },
-    {
-      "input": "RightStickY",
-      "button": "",
-      "invert": false
+      "type": "Analog",
+      "input": "RightTrigger",
+      "invertInput": false,
+      "reverseButton": "Triangle",
+      "brake": "",
+      "brakeTimeout": 300,
+      "button1": "",
+      "button2": "",
+      "buttonStop": "",
+      "sticky": false,
+      "steps": 0
     }
   ]
 }
