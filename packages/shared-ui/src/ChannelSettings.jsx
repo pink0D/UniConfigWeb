@@ -248,6 +248,7 @@ const ChannelSettings = ({ channel, index, label, channelType, onChannelChange }
                     ))}
                   </select>
                 </div>
+                {channelType !== 'mk_simple' && (
                 <div className="channel-row">
                   <label className="invert-switch">
                     <input
@@ -262,6 +263,7 @@ const ChannelSettings = ({ channel, index, label, channelType, onChannelChange }
                     Sticky buttons
                   </label>
                 </div>
+                )}
               </div>
             )}
             {mode === 'stepper' && (
@@ -396,6 +398,39 @@ const ChannelSettings = ({ channel, index, label, channelType, onChannelChange }
                 onClick={() => {
                   const val = Math.min(100, (channel.maxPower ?? 100) + 5);
                   onChannelChange(index, { ...channel, maxPower: val });
+                }}
+              >+</button>
+            </div>
+            )}
+            {channelType === 'hdriver' && (
+            <div className="channel-row">
+              <label className="setting-label">Soft start time</label>
+              <button
+                className="btn-stepper"
+                onClick={() => {
+                  const val = Math.max(0, (channel.softStartTime ?? 0) - 50);
+                  onChannelChange(index, { ...channel, softStartTime: val });
+                }}
+              >−</button>
+              <input
+                className="stepper-input"
+                type="number"
+                min={0}
+                max={500}
+                step={50}
+                value={channel.softStartTime ?? 0}
+                onChange={(e) => {
+                  const v = parseInt(e.target.value, 10);
+                  if (!isNaN(v) && v >= 0 && v <= 500) {
+                    onChannelChange(index, { ...channel, softStartTime: v });
+                  }
+                }}
+              />
+              <button
+                className="btn-stepper"
+                onClick={() => {
+                  const val = Math.min(500, (channel.softStartTime ?? 0) + 50);
+                  onChannelChange(index, { ...channel, softStartTime: val });
                 }}
               >+</button>
             </div>
