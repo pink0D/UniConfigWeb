@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ApiService from './ApiService';
 import SaveCancelBar from './SaveCancelBar.jsx';
 
-const SettingsPage = ({ configEndpoint, defaultData, onDataLoaded, beforeSave, saveDataTransform, children }) => {
+const SettingsPage = ({ configEndpoint, defaultData, onDataLoaded, beforeSave, saveDataTransform, children, enableRedirect = true }) => {
   const [data, setData] = useState(defaultData);
   const [originalData, setOriginalData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -48,7 +48,12 @@ const SettingsPage = ({ configEndpoint, defaultData, onDataLoaded, beforeSave, s
         const errorText = await response.text();
         throw new Error(errorText || `Server returned ${response.status}`);
       }
-      window.location.href = '/';
+      if (enableRedirect) {
+        window.location.href = '/';
+      } else {
+        setSaving(false);
+        loadConfig();
+      }
     } catch (err) {
       setError(err.message);
       setSaving(false);
@@ -58,7 +63,11 @@ const SettingsPage = ({ configEndpoint, defaultData, onDataLoaded, beforeSave, s
   };
 
   const handleCancel = () => {
-    window.location.href = '/';
+    if (enableRedirect) {
+      window.location.href = '/';
+    } else {
+      loadConfig();
+    }
   };
 
   if (loading) {

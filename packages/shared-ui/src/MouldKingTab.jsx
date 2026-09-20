@@ -112,12 +112,13 @@ const cleanChannelData = (data) => {
   return cleaned;
 };
 
-const MouldKingTab = ({ configEndpoint, channelType = 'mk_advanced', enableMultiModule = false, label = 'Mould King' }) => {
+const MouldKingTab = ({ configEndpoint, channelType = 'mk_advanced', enableMultiModule = false, label = 'Mould King', enableRedirect = true }) => {
   return (
     <SettingsPage
       configEndpoint={configEndpoint}
       defaultData={defaultData}
       saveDataTransform={cleanChannelData}
+      enableRedirect={enableRedirect}
     >
       <MouldKingForm channelType={channelType} enableMultiModule={enableMultiModule} />
     </SettingsPage>
