@@ -46,7 +46,7 @@ export default defineConfig(({ mode }) => ({
     mode === 'production' ? gzipOutput() : undefined,
     mode === 'production' ? removeExampleConfigs() : undefined,
   ].filter(Boolean),
-  base: mode === 'production' ? '/settings/' : '/',
+  base: mode === 'production' ? './' : '/',
   server: {
     host: true,
     port: 3000,

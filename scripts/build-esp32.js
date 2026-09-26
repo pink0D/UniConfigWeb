@@ -185,7 +185,41 @@ function main() {
   cpp += '\n';
   cpp += '#endif // FILE_DATA_STRUCT_DEFINED\n';
   cpp += '\n';
-  
+
+  // Find the index file (index.html or index.html.gz) for the "/" route
+  let rootIndex = -1;
+  for (let i = 0; i < fileData.length; i++) {
+    if (fileData[i].displayName === 'index.html' || fileData[i].displayName === 'index.html.gz') {
+      rootIndex = i;
+      break;
+    }
+  }
+
+  // ---- WEB_ROOT precompiler variable ----------------------------------------
+  // If WEB_ROOT was defined externally (e.g. via compiler -D flag), honour it.
+  // Otherwise define it here, set to basePath (if passed to script) or empty.
+  cpp += '#ifndef WEB_ROOT\n';
+  cpp += `#define WEB_ROOT "${basePath}"\n`;
+  cpp += '#define WEB_ROOT_EXPLICITLY_DEFINED 0\n';
+  cpp += '#else\n';
+  cpp += '#define WEB_ROOT_EXPLICITLY_DEFINED 1\n';
+  cpp += '#endif\n';
+  cpp += '\n';
+
+  // ROOT_FILE_COUNT — compile-time count of root entries;
+  // when WEB_ROOT was defined externally, only one "/" entry is added.
+  if (rootIndex >= 0) {
+    cpp += '#if WEB_ROOT_EXPLICITLY_DEFINED\n';
+    cpp += '#define ROOT_FILE_COUNT 2\n';
+    cpp += '#else\n';
+    cpp += `#define ROOT_FILE_COUNT ${basePath ? 2 : 1}\n`;
+    cpp += '#endif\n';
+    cpp += '\n';
+  } else {
+    cpp += '#define ROOT_FILE_COUNT 0\n';
+    cpp += '\n';
+  }
+
   // Per-file content byte arrays
   const prefix = globalPrefix;
   for (let i = 0; i < fileData.length; i++) {
@@ -196,26 +230,32 @@ function main() {
     cpp += '\n';
   }
 
-  // Find the index file (index.html or index.html.gz) for the "/" route
-  let rootIndex = -1;
-  let rootCountAdded = 0;
-  for (let i = 0; i < fileData.length; i++) {
-    if (fileData[i].displayName === 'index.html' || fileData[i].displayName === 'index.html.gz') {
-      rootIndex = i;
-      rootCountAdded = 1;
-      break;
-    }
-  }
-
   // Master array of web_file_data
   cpp += `static const web_file_data ${prefix}files[] = {\n`;
-  // Explicit "/" entry pointing to index.html (or index.html.gz) content
+
+  // Explicit root entries (pointing to index.html)
   if (rootIndex >= 0) {
     const fi = fileData[rootIndex];
 
-    // If basePath is specified, add both /basePath and /basePath/ entries
+    cpp += '#if WEB_ROOT_EXPLICITLY_DEFINED\n';
+    // WEB_ROOT was defined externally — entries for WEBROOT and WEBROOT/
+    cpp += '    {\n';
+    cpp += `        WEB_ROOT,\n`;
+    cpp += `        ${fi.contentSize},\n`;
+    cpp += `        "${fi.contentType}",\n`;
+    cpp += `        ${fi.contentEncoding},\n`;
+    cpp += `        ${prefix}file_${rootIndex}_content,\n`;
+    cpp += '    },\n';
+    cpp += '    {\n';
+    cpp += `        WEB_ROOT "/",\n`;
+    cpp += `        ${fi.contentSize},\n`;
+    cpp += `        "${fi.contentType}",\n`;
+    cpp += `        ${fi.contentEncoding},\n`;
+    cpp += `        ${prefix}file_${rootIndex}_content,\n`;
+    cpp += '    },\n';
+    cpp += '#else\n';
+    // WEB_ROOT was NOT defined externally — use basePath logic
     if (basePath) {
-      rootCountAdded = 2;
       cpp += '    {\n';
       cpp += `        "${basePath}",\n`;
       cpp += `        ${fi.contentSize},\n`;
@@ -231,7 +271,6 @@ function main() {
       cpp += `        ${prefix}file_${rootIndex}_content,\n`;
       cpp += '    },\n';
     } else {
-      rootCountAdded = 1;
       cpp += '    {\n';
       cpp += '        "/",\n';
       cpp += `        ${fi.contentSize},\n`;
@@ -240,13 +279,13 @@ function main() {
       cpp += `        ${prefix}file_${rootIndex}_content,\n`;
       cpp += '    },\n';
     }
+    cpp += '#endif\n';
   } 
-
 
   for (let i = 0; i < fileData.length; i++) {
     const fd = fileData[i];
     cpp += '    {\n';
-    cpp += `        "${basePath}/${fd.displayName}",\n`;
+    cpp += `        WEB_ROOT "/${fd.displayName}",\n`;
     cpp += `        ${fd.contentSize},\n`;
     cpp += `        "${fd.contentType}",\n`;
     cpp += `        ${fd.contentEncoding},\n`;
@@ -256,8 +295,8 @@ function main() {
   cpp += '};\n';
   cpp += '\n';
 
-  // File count convenience constant
-  cpp += `static const size_t ${prefix}files_count = ${fileData.length + rootCountAdded};\n`;
+  // File count convenience constant (uses ROOT_FILE_COUNT for compile-time evaluation)
+  cpp += `static const size_t ${prefix}files_count = ${fileData.length} + ROOT_FILE_COUNT;\n`;
   cpp += '\n';
   cpp += `static const web_data ${prefix}web_data = {\n`;
   cpp += `    ${prefix}files,\n`;
