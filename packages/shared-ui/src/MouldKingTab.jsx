@@ -44,7 +44,9 @@ const normalizeModuleType = (type) => {
   return type;
 };
 
-const MouldKingForm = ({ data, onDataChange, channelType, enableMultiModule }) => {
+const MouldKingForm = ({ data, onDataChange }) => {
+  const enableMultiModule = data.enableMultiModule || false;
+  const channelType = data.advancedChannels ? 'mk_advanced' : 'mk_simple';
   const moduleType = normalizeModuleType(data.moduleType);
   const moduleTypes = getModuleTypes(enableMultiModule);
 
@@ -109,10 +111,12 @@ const MouldKingForm = ({ data, onDataChange, channelType, enableMultiModule }) =
 const cleanChannelData = (data) => {
   const cleaned = JSON.parse(JSON.stringify(data));
   cleaned.channels = cleaned.channels.map((channel) => cleanChannel(channel));
+  delete cleaned.advancedChannels;
+  delete cleaned.enableMultiModule;
   return cleaned;
 };
 
-const MouldKingTab = ({ configEndpoint, channelType = 'mk_advanced', enableMultiModule = false, label = 'Mould King', enableRedirect = true }) => {
+const MouldKingTab = ({ configEndpoint, label = 'Mould King', enableRedirect = true }) => {
   return (
     <SettingsPage
       configEndpoint={configEndpoint}
@@ -120,7 +124,7 @@ const MouldKingTab = ({ configEndpoint, channelType = 'mk_advanced', enableMulti
       saveDataTransform={cleanChannelData}
       enableRedirect={enableRedirect}
     >
-      <MouldKingForm channelType={channelType} enableMultiModule={enableMultiModule} />
+      <MouldKingForm />
     </SettingsPage>
   );
 };
