@@ -7,6 +7,10 @@ class ApiService {
       if (apiBaseUrl) {
         return `${apiBaseUrl}${endpoint}`;
       }
+      // Root config: load from config.json when no apiBaseUrl
+      if (isGet && endpoint === '/config') {
+        return 'config.json';
+      }
       // Fallback to local JSON files when no API base URL is configured
       return isGet ? `${endpoint}.json` : endpoint;
     }
