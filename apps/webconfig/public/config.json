@@ -1,17 +1,18 @@
 {
-  "settings_save_redirect": true,
+  "setting_title": "WebConfig",
+  "settings_save_redirect": false,
   "components": [
     {
       "name": "MouldKingProfile",
       "label": "Mould King"
     },
     {
-      "name": "ESP32Camera",
-      "label": "Camera"
-    },
-    {
       "name": "WiFiManager",
       "label": "WiFi"
+    },
+    {
+      "name": "ESP32Camera",
+      "label": "Camera"
     }
   ]
 }

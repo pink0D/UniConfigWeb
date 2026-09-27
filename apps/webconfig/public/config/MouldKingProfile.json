@@ -1,6 +1,6 @@
 {
   "moduleType": "MK40",
-  "advancedChannels": true,
+  "advancedChannels": false,
   "enableMultiModule": true,
   "channels": [
     {
