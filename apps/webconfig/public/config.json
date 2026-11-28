@@ -1,0 +1,26 @@
+{
+  "settings_title": "WebConfig",
+  "settings_save_redirect": false,
+  "components": [
+    {
+      "name": "MouldKingProfile",
+      "label": "Mould King"
+    },
+    {
+      "name": "MotorProfile",
+      "label": "HDriver"
+    },
+    {
+      "name": "ServoProfile",
+      "label": "Servo"
+    },
+    {
+      "name": "WiFiManager",
+      "label": "WiFi"
+    },
+    {
+      "name": "Extension",
+      "label": "Ext"
+    }
+  ]
+}

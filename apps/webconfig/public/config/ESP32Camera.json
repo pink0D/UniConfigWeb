@@ -1,0 +1,7 @@
+{
+  "cameraType": "ESP32CAM OV2640",
+  "resolution": "QVGA 320x240",
+  "mirrorX": false,
+  "mirrorY": false,
+  "rotation": 0
+}

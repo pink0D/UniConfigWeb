@@ -1,0 +1,27 @@
+{
+    "ProfileManager": {
+        "profiles": [
+            {
+                "name": "Default",
+                "active": true
+            },
+            {
+                "name": "Profile 1",
+                "active": false
+            }
+        ]
+    },
+    "BluetoothSettings": {
+        "enablePairingAfterStartup": true
+    },
+    "TelegramBot": {
+        "enabled": false,
+        "botToken": "XXXXXXXXX:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        "chatId": "XXXXXXXXX",
+        "deviceName": "M5Stack Atomic HDriver Base"
+    },
+    "DeepSleepSettings": {
+        "enableDeepSleep": false
+    }
+
+}
